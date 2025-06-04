@@ -4,18 +4,25 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Install dependencies
 RUN apt-get update && \
-    apt-get install -y curl wget gnupg ca-certificates sudo lsb-release bash
+    apt-get install -y curl wget gnupg ca-certificates sudo unzip bash
 
-# Install Ollama
-RUN curl -fsSL https://ollama.com/install.sh | sh
+# Install latest Ollama manually from GitHub releases
+RUN curl -LO https://ollama.com/download/OllamaLinux.zip && \
+    unzip OllamaLinux.zip -d /usr/local/bin && \
+    chmod +x /usr/local/bin/ollama
 
-# Copy startup script
+# Add ollama to PATH explicitly
+ENV PATH="/usr/local/bin:$PATH"
+
+# Set working directory
+WORKDIR /root
+
+# Expose default port
+EXPOSE 11434
+
+# Add start script
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
 
-WORKDIR /root
-
-EXPOSE 11434
-
-# Use script to start
+# Start everything
 CMD ["/start.sh"]

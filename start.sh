@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# Start Ollama in background
+# Start Ollama listening on 0.0.0.0
 ollama serve --host 0.0.0.0 &
 
-# Wait a few seconds for server to boot
+# Wait for server to boot
 sleep 5
 
-# Pull your model
+# Pull model
 ollama pull gemma:2b
 
-# Keep container alive
+# Keep container running
 tail -f /dev/null
