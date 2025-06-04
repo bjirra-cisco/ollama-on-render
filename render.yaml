@@ -1,0 +1,11 @@
+services:
+  - type: background
+    name: ollama
+    env: docker
+    region: oregon
+    plan: starter
+    dockerfilePath: ./Dockerfile
+    autoDeploy: true
+    ports:
+      - port: 11434
+        protocol: tcp
