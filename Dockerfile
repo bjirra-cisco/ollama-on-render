@@ -1,9 +1,10 @@
 FROM ollama/ollama
 
-# Copy your startup script
+# Add your custom startup script
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
 
 EXPOSE 11434
 
-CMD ["/start.sh"]
+# Override default ENTRYPOINT and run your script
+ENTRYPOINT ["/bin/bash", "/start.sh"]
