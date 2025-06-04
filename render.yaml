@@ -2,8 +2,9 @@ services:
   - type: web
     name: ollama
     env: docker
-    plan: starter
     dockerfilePath: ./Dockerfile
+    plan: starter
+    autoDeploy: true
     ports:
       - port: 11434
         protocol: http
