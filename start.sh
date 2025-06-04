@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# Start Ollama server on 0.0.0.0
-ollama serve --host 0.0.0.0 &
+# Start the Ollama server and bind to 0.0.0.0 so Render can reach it
+/ollama/bin/ollama serve --host 0.0.0.0 &
 
-# Wait for server
+# Wait for it to be ready
 sleep 5
 
-# Pull model
-ollama pull gemma:2b
+# Pull the model
+/ollama/bin/ollama pull gemma:2b
 
-# Keep alive
+# Keep the container running
 tail -f /dev/null
