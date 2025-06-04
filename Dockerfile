@@ -18,4 +18,4 @@ EXPOSE 11434
 
 # Run Ollama server
 #CMD [ "ollama", "serve" ]
-CMD ollama serve & sleep 5 && ollama pull gemma:2b && tail -f /dev/null
+CMD ["ollama serve --host 0.0.0.0 & sleep 5 && ollama pull gemma:2b && tail -f /dev/null"]

@@ -4,7 +4,6 @@ services:
     env: docker
     plan: starter
     dockerfilePath: ./Dockerfile
-    autoDeploy: true
     ports:
       - port: 11434
         protocol: http
