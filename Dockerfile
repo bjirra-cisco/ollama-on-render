@@ -1,21 +1,21 @@
 FROM ubuntu:22.04
 
-# Avoid interactive prompts during install
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install required dependencies
+# Install dependencies
 RUN apt-get update && \
-    apt-get install -y curl wget gnupg ca-certificates sudo lsb-release
+    apt-get install -y curl wget gnupg ca-certificates sudo lsb-release bash
 
-# Add Ollama
+# Install Ollama
 RUN curl -fsSL https://ollama.com/install.sh | sh
 
-# Set working dir
+# Copy startup script
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
+
 WORKDIR /root
 
-# Expose default port
 EXPOSE 11434
 
-# Run Ollama server
-#CMD [ "ollama", "serve" ]
-CMD ["ollama serve --host 0.0.0.0 & sleep 5 && ollama pull gemma:2b && tail -f /dev/null"]
+# Use script to start
+CMD ["/start.sh"]
