@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: ollama
+    name: ollama-gemma
     env: docker
     dockerfilePath: ./Dockerfile
     plan: starter

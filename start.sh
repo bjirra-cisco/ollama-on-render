@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# Start the Ollama server bound to all interfaces
+# Start Ollama server on all interfaces
 ollama serve --host 0.0.0.0 &
 
-# Wait for the server to initialize
+# Wait a moment for server to be ready
 sleep 5
 
-# Pull the desired model
+# Pull your model
 ollama pull gemma:2b
 
-# Keep the container running
+# Keep it running forever
 tail -f /dev/null
