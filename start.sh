@@ -6,11 +6,15 @@ export OLLAMA_HOST=0.0.0.0
 # Start the server in the background
 ollama serve &
 
-# Wait for server to come up
-sleep 5
+until curl -s http://localhost:11434; do
+  echo "Waiting for Ollama to start..."
+  sleep 1
+done
 
 # Pull the model
 ollama pull gemma:2b
 
 # Keep the container running
 tail -f /dev/null
+
+
